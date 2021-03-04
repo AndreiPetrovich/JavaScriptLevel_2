@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    margin: 0 auto;
+    max-width: 1024px;
+}
+
+.cart-button{
+    display: block;
+    margin: 10px 10px 10px auto;
+}
+
+.product-list{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.product-item{
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+}
+
+.item-title{
+    text-align: center;
+}
+
+.item-cost{
+    text-align: right;
+}
+
+.item-img{
+    height: 115px;
+    width: 180px;
+}
+
+.item-button{
+    margin: 5px 0 5px auto;
+}
