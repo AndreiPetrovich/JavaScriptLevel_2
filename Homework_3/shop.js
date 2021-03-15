@@ -47,7 +47,6 @@ class GoodsItem {
     setBtnHandler() {
         let $buttons = document.querySelectorAll(".item-button");
         let $lastButton = $buttons[$buttons.length - 1];
-        localStorage.clear();
         $lastButton.addEventListener('click', () => {this.addToCart()});
     }
 
@@ -88,6 +87,7 @@ class GoodsList {
     }
 
     onFetchSuccess(data) {
+        localStorage.clear();
         this.goods = data.map(({title, price}) => new GoodsItem(title, price));
         this.render();
     }
