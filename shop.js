@@ -1,13 +1,3 @@
-class Cart {
-    constructor() {
-        this.cart = [];
-    }
-
-    fetch() {
-        return this.cart
-    }
-}
-
 class Api {
     constructor(){
 
@@ -15,12 +5,12 @@ class Api {
 
     fetch(){
         return [
-            {title : "Roadster", price : 50000},
-            {title : "Model S", price : 79990},
-            {title : "Model X", price : 99990},
-            {title : "Model 3", price : 35000},
-            {title : "Model Y", price : 40490},
-        ];   
+            { "title": "Coat", "price": 450 },
+            { "title": "Shirt", "price": 150 },
+            { "title": "Socks", "price": 50 },
+            { "title": "Jacket", "price": 350 },
+            { "title": "Shoes", "price": 250 }
+        ];
     }
 }
 
@@ -28,6 +18,11 @@ class GoodsItem {
     constructor(title, price) {
         this.title = title;
         this.price = price
+    }
+
+    
+    addToCart() {
+        //добавить товар в корзину
     }
 
     getHtml() {
@@ -55,51 +50,34 @@ class GoodsList {
     }
 
     getSum(prop = "price") {    //сумма всех товаров (или сумма скидок, купонов, кэшбэков)
-        if (this.api.fetch()[0][prop] != undefined && !isNaN(this.api.fetch()[0][prop])) {
-            let sum = 0;
-            this.api.fetch().forEach((item) => {
-            sum += +item[prop]
-            });
-            return sum
-        }
-    }
-}
-
-class CartItem extends GoodsItem {
-    constructor(title, price) {
-        super(title, price)
-    }
-
-}
-
-class CartList extends GoodsList{
-    constructor() {
-        super();
-        this.api = new Cart();
-        this.$cartList = document.querySelector(".cart-list");
-        this.goods = [];
-    }
-
-    render() {
-        this.$cartList.textContent = "";
-        this.goods.forEach((good) => {
-            this.$cartList.insertAdjacentHTML("beforeend", good.getHtml())
+        let sum = 0;
+        this.goods.forEach((item) => {
+        sum += +item[prop];
         });
+        return sum
+    }
+}
+
+class CartItem {
+    constructor(title, price, quantity) {
+        
     }
 
-    addItem() {
-        //добавить товар
-    }
-
-    delItem() {
+    delFromCart() {
         //удалить товар
     }
 
-        //сумма товаров унаследована
+}
+
+class Cart {
+    constructor() {
+
+    }
 
 }
 
 const goodsList = new GoodsList();
-const cartList = new CartList();
+const cartList = new Cart();
 goodsList.fetchGoods();
 goodsList.render();
+console.log(goodsList.getSum());
