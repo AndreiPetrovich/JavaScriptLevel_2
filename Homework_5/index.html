@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>eShop</title>
+  <link rel="stylesheet" href="shop.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <input id="search" v-model="search">
+      <button id="btn-search" type="button" v-on:click="searchHandler">Искать</button>
+      <button id="btn-cart" type="button" v-on:click="cartHandler">Корзина</button>
+    </header>
+    <main>
+      <div class="goods-list">
+        <template v-if="goods.length">
+            <div class="goods-item" v-for="good in filtredGoods">
+                <h3 class="item-title">{{ good.title }}</h3>
+                <img class="item-img" src="">
+                <p class="item-price">{{ good.price }}</p>
+                <button class="item-button" v-on:click="addToCart(good)">Купить</button>
+            </div>
+        </template>
+        <h3 v-else>Нет данных</h3>
+      </div>
+      <div class="cart-list" v-if="isVisibleCart">
+        <template v-if="cart.length">
+            <h3>Товаров в корзине: {{ cartCount }}</h3>
+            <div class="cart-item" v-for="good in cart">
+                <h3>{{ good.title }}</h3>
+                <p>{{ good.price }}</p>
+                <button class="item-button" v-on:click="delFromCart(good)">-</button>
+            </div>
+            <h3>Итог: {{ cartSum }}</h3>
+        </template>
+        <h3 v-else>В корзине нет товаров</h3>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="shop.js"></script>
+</body>
+</html>
